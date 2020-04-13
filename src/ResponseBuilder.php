@@ -382,8 +382,8 @@ class ResponseBuilder extends ResponseBuilderBase
 
         $date = Carbon::now();
 
-        $response['timestamp'] = $data->getTimestamp();
-        $response['timezone'] = $data->getTimezone();
+        $response['timestamp'] = $date->getTimestamp();
+        $response['timezone'] = $date->getTimezone();
 
         unset($response['locale']);
 
