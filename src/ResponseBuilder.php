@@ -14,6 +14,7 @@ namespace MarcinOrlowski\ResponseBuilder;
  * @link      https://github.com/MarcinOrlowski/laravel-api-response-builder
  */
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
@@ -378,6 +379,13 @@ class ResponseBuilder extends ResponseBuilderBase
             $debug_key = Config::get(ResponseBuilder::CONF_KEY_DEBUG_DEBUG_KEY, ResponseBuilder::KEY_DEBUG);
             $response[ $debug_key ] = $debug_data;
         }
+
+        $date = Carbon::now();
+
+        $response['timestamp'] = $data->getTimestamp();
+        $response['timezone'] = $data->getTimezone();
+
+        unset($response['locale']);
 
         return $response;
     }
