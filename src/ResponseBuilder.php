@@ -367,25 +367,22 @@ class ResponseBuilder extends ResponseBuilderBase
         }
 
         /** @noinspection PhpUndefinedClassInspection */
+
+        $date = Carbon::now();
+
         $response = [
-            ResponseBuilder::KEY_SUCCESS => $success,
-            ResponseBuilder::KEY_CODE    => $api_code,
-            ResponseBuilder::KEY_LOCALE  => App::getLocale(),
-            ResponseBuilder::KEY_MESSAGE => $message,
-            ResponseBuilder::KEY_DATA    => $data,
+            ResponseBuilder::KEY_SUCCESS   => $success,
+            ResponseBuilder::KEY_CODE      => $api_code,
+            ResponseBuilder::KEY_MESSAGE   => $message,
+            ResponseBuilder::KEY_TIMESTAMP => $date->getTimestamp(),
+            ResponseBuilder::KEY_TIMEZONE  => $date->getTimezone()->getName(),
+            ResponseBuilder::KEY_DATA      => $data,
         ];
 
         if ($debug_data !== null) {
             $debug_key = Config::get(ResponseBuilder::CONF_KEY_DEBUG_DEBUG_KEY, ResponseBuilder::KEY_DEBUG);
             $response[ $debug_key ] = $debug_data;
         }
-
-        $date = Carbon::now();
-
-        $response['timestamp'] = $date->getTimestamp();
-        $response['timezone'] = $date->getTimezone()->getName();
-
-        unset($response['locale']);
 
         return $response;
     }

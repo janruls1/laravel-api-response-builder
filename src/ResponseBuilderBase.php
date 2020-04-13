@@ -77,6 +77,8 @@ abstract class ResponseBuilderBase
     public const KEY_LOCALE  = 'locale';
     public const KEY_MESSAGE = 'message';
     public const KEY_DATA    = 'data';
+    public const KEY_TIMESTAMP = 'timestamp';
+    public const KEY_TIMEZONE  = 'timezone';
 
     /**
      * Default key to be used by exception handler while processing ValidationException
