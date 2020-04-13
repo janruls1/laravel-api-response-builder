@@ -14,7 +14,9 @@ namespace MarcinOrlowski\ResponseBuilder;
  * @link      https://github.com/MarcinOrlowski/laravel-api-response-builder
  */
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
@@ -367,7 +369,7 @@ class ResponseBuilder extends ResponseBuilderBase
         $response = [
             ResponseBuilder::KEY_SUCCESS => $success,
             ResponseBuilder::KEY_CODE    => $api_code,
-            ResponseBuilder::KEY_LOCALE  => \App::getLocale(),
+            ResponseBuilder::KEY_LOCALE  => App::getLocale(),
             ResponseBuilder::KEY_MESSAGE => $message,
             ResponseBuilder::KEY_DATA    => $data,
         ];
@@ -408,6 +410,6 @@ class ResponseBuilder extends ResponseBuilderBase
             $placeholders['api_code'] = $api_code;
         }
 
-        return \Lang::get($key, $placeholders);
+        return Lang::get($key, $placeholders);
     }
 }
