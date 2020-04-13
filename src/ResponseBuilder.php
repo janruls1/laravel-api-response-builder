@@ -383,7 +383,7 @@ class ResponseBuilder extends ResponseBuilderBase
         $date = Carbon::now();
 
         $response['timestamp'] = $date->getTimestamp();
-        $response['timezone'] = $date->getTimezone();
+        $response['timezone'] = $date->getTimezone()->getName();
 
         unset($response['locale']);
 
